@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Regiones y Comunas de Chile</title>
+</head>
+<body>
+    <h2>Selecciona tu Región y Comuna</h2>
+
+    <label for="region">Región:</label>
+    <select id="region" onchange="actualizarComunas()">
+        <option value="">Seleccione una región</option>
+        <option value="arica_parinacota">Arica y Parinacota</option>
+        <option value="tarapaca">Tarapacá</option>
+        <option value="antofagasta">Antofagasta</option>
+        <option value="atacama">Atacama</option>
+        <option value="coquimbo">Coquimbo</option>
+        <option value="valparaiso">Valparaíso</option>
+        <option value="metropolitana">Metropolitana</option>
+        <option value="ohiggins">O'Higgins</option>
+        <option value="maule">Maule</option>
+        <option value="ñuble">Ñuble</option>
+        <option value="biobio">Biobío</option>
+        <option value="araucania">La Araucanía</option>
+        <option value="los_rios">Los Ríos</option>
+        <option value="los_lagos">Los Lagos</option>
+        <option value="aysen">Aysén</option>
+        <option value="magallanes">Magallanes</option>
+    </select>
+
+    <br><br>
+
+    <label for="comuna">Comuna:</label>
+    <select id="comuna">
+        <option value="">Seleccione una comuna</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="guardarDatos()">Guardar</button>
+
+    <script>
+        const comunasPorRegion = {
+            arica_parinacota: ["Arica", "Camarones", "Putre", "General Lagos"],
+            tarapaca: ["Iquique", "Alto Hospicio", "Pozo Almonte", "Pica", "Huara", "Camiña", "Colchane"],
+            antofagasta: ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"],
+            atacama: ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"],
+            coquimbo: ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"],
+            valparaiso: ["Valparaíso", "Viña del Mar", "Concón", "Quilpué", "Villa Alemana", "Casablanca", "Juan Fernández", "San Antonio", "Cartagena", "El Quisco", "El Tabo", "Algarrobo", "Santo Domingo"],
+            metropolitana: ["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura"],
+            ohiggins: ["Rancagua", "Codegua", "Coínco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente"],
+            maule: ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael", "Cauquenes", "Chanco", "Pelluhue", "Curicó", "Hualañé", "Licantén", "Molina", "Rauco", "Romeral", "Sagrada Familia", "Teno", "Vichuquén"],
+            ñuble: ["Chillán", "Bulnes", "Cobquecura", "Coelemu", "Coihueco", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos"],
+            biobio: ["Concepción", "Coronel", "Chiguayante", "Florida", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tomé", "Los Ángeles", "Antuco", "Cabrero", "Laja", "Mulchén", "Nacimiento", "Negrete", "Quilaco", "San Rosendo", "Tucapel", "Yumbel"],
+            araucania: ["Temuco", "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Nueva Imperial", "Padre Las Casas", "Perquenco", "Pitrufquén"],
+            los_rios: ["Valdivia", "Corral", "Futrono", "La Unión", "Lago Ranco", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli"],
+            los_lagos: ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas"],
+            aysen: ["Coyhaique", "Puerto Aysén", "Cisnes", "Chile Chico"],
+            magallanes: ["Punta Arenas", "Puerto Natales", "Porvenir", "Cabo de Hornos"]
+        };
+
+        function actualizarComunas() {
+            let regionSeleccionada = document.getElementById("region").value;
+            let comunaSelect = document.getElementById("comuna");
+
+            comunaSelect.innerHTML = '<option value="">Seleccione una comuna</option>';
+
+            if (regionSeleccionada in comunasPorRegion) {
+                comunasPorRegion[regionSeleccionada].forEach(comuna => {
+                    let option = document.createElement("option");
+                    option.value = comuna;
+                    option.textContent = comuna;
+                    comunaSelect.appendChild(option);
+                });
+            }
+        }
+
+        function guardarDatos() {
+            let region = document.getElementById("region").value;
+            let comuna = document.getElementById("comuna").value;
+
+            fetch("https://script.google.com/macros/s/AKfycbwQ3fVWs2H8YcgeO2gbU2t0bqhYZg-wIm6wT-vhuPJxcciXpQImLTEOPufBvQX420I/exec", {
+                method: "POST",
+                body: JSON.stringify({ region, comuna }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(() => alert("Datos guardados en Google Sheets"))
+            .catch(() => alert("Error al guardar los datos"));
+        }
+    </script>
+</body>
+</html>
+
