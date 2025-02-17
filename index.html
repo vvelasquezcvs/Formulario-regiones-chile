@@ -80,24 +80,28 @@
             let region = document.getElementById("region").value;
             let comuna = document.getElementById("comuna").value;
 
-            fetch("https://script.google.com/macros/s/AKfycbzbc_xCKUcWvo18SJkfJ5fZmczJG692akt8WEO0buQo58Z1f1Dn1WDLhEloaWUwJ9dp/exec", {
+          fetch("https://script.google.com/macros/s/AKfycbwZ7bgRmH6Lnz2tdmZ1-o_4XCEcT0F80Ut71g-gjRGqJ80qYd6BSt8mWoanHYlT__Zv/exec", {
     method: "POST",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ 
         region: document.getElementById("region").value, 
         comuna: document.getElementById("comuna").value 
-    }),
-    headers: { "Content-Type": "application/json" }
+    })
 })
 .then(response => response.json())
 .then(data => {
+    console.log("Respuesta recibida:", data); // Esto nos ayuda a ver qué responde el servidor
     if (data.status === "success") {
         alert("Datos guardados correctamente en Google Sheets");
     } else {
         alert("Error al guardar los datos: " + data.message);
     }
 })
-.catch(error => alert("Error en la conexión: " + error.toString()));
-
+.catch(error => {
+    console.error("Error en la conexión:", error); // Esto ayuda a depurar errores
+    alert("Error en la conexión: " + error.toString());
+});
 
         }
     </script>
