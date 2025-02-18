@@ -43,14 +43,14 @@
                 if (!campo || campo.value.trim() === "") {
                     alert("Por favor, complete todos los campos obligatorios.");
                     campo.focus();
-                    event.preventDefault();
-                    return false;
+                    formularioValido = false;
+                    break;
                 }
             }
             // Validar selección de región y comuna
-            let region = document.getElementById("region");
-            let comuna = document.getElementById("comuna");
-            if (region.value === "" || comuna.value === "") {
+            let region = document.getElementById("region").value;
+            let comuna = document.getElementById("comuna").value;
+            if (region === "" || comuna === "") {
                 alert("Debe seleccionar una región y una comuna.");
                 event.preventDefault();
                 return false;
