@@ -9,7 +9,13 @@
 
     <h2>Selecciona tu Región y Comuna</h2>
 
-    <form action="https://script.google.com/macros/s/AKfycbwDVeeRyzuXz3LOJ8Ag3uXF6tVBn3X2kr8_T9Z3FwZT3VUgZwUWZn2AWUm4MfYxc-4n/exec" method="post">
+    <form action="https://script.google.com/macros/s/AKfycbwHhf0t5N9Oa75_eXA5mMphKlyimbbmXTSAQrXtWcP9407YK56JtQA-gZ4RR2YCiOwS/exec" method="post">
+
+         <label for="email">Correo Electrónico:</label>
+         <input type="email" name="email" id="email" placeholder="Ingrese su correo" required>
+        
+        <br><br>
+
         <label for="region">Región:</label>
         <select name="region" id="region" onchange="actualizarComunas()">
             <option value="">Seleccione una región</option>
