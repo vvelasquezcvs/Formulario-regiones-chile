@@ -11,19 +11,31 @@
 
     <form action="https://script.google.com/macros/s/AKfycbx5NuGauyFM7FSjCo1Sp66wzUtkLCt-jBup5Arp90GxZidukVGRurTtsYd3DAttWBM/exec" method="post">
         <label for="region">Región:</label>
-        <select name="region" id="region">
+        <select name="region" id="region" onchange="actualizarComunas()">
+            <option value="">Seleccione una región</option>
+            <option value="arica_parinacota">Arica y Parinacota</option>
+            <option value="tarapaca">Tarapacá</option>
+            <option value="antofagasta">Antofagasta</option>
+            <option value="atacama">Atacama</option>
+            <option value="coquimbo">Coquimbo</option>
+            <option value="valparaiso">Valparaíso</option>
             <option value="metropolitana">Región Metropolitana</option>
-            <option value="valparaiso">Región de Valparaíso</option>
-            <option value="biobio">Región del Biobío</option>
+            <option value="ohiggins">O'Higgins</option>
+            <option value="maule">Maule</option>
+            <option value="ñuble">Ñuble</option>
+            <option value="biobio">Biobío</option>
+            <option value="araucania">La Araucanía</option>
+            <option value="los_rios">Los Ríos</option>
+            <option value="los_lagos">Los Lagos</option>
+            <option value="aysen">Aysén</option>
+            <option value="magallanes">Magallanes</option>
         </select>
 
         <br><br>
 
         <label for="comuna">Comuna:</label>
         <select name="comuna" id="comuna">
-            <option value="santiago">Santiago</option>
-            <option value="viña">Viña del Mar</option>
-            <option value="concepcion">Concepción</option>
+            <option value="">Seleccione una comuna</option>
         </select>
 
         <br><br>
@@ -31,6 +43,45 @@
         <button type="submit">Guardar</button>
     </form>
 
+    <script>
+        // Listado de comunas por región
+        const comunasPorRegion = {
+            arica_parinacota: ["Arica", "Camarones", "Putre", "General Lagos"],
+            tarapaca: ["Iquique", "Alto Hospicio", "Pozo Almonte", "Pica", "Huara", "Camiña", "Colchane"],
+            antofagasta: ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"],
+            atacama: ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"],
+            coquimbo: ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"],
+            valparaiso: ["Valparaíso", "Viña del Mar", "Concón", "Quilpué", "Villa Alemana", "Casablanca", "San Antonio", "Cartagena", "El Quisco", "El Tabo", "Algarrobo", "Santo Domingo"],
+            metropolitana: ["Santiago", "Maipú", "Puente Alto", "Las Condes", "La Florida", "Providencia", "Ñuñoa", "Pudahuel", "Quilicura"],
+            ohiggins: ["Rancagua", "San Fernando", "Santa Cruz", "Rengo", "Pichilemu", "Chépica", "Graneros", "Mostazal"],
+            maule: ["Talca", "Curicó", "Linares", "Cauquenes", "Constitución", "Parral", "Molina", "Teno", "San Clemente"],
+            ñuble: ["Chillán", "San Carlos", "Bulnes", "Yungay", "Quirihue", "Coihueco", "Ninhue"],
+            biobio: ["Concepción", "Los Ángeles", "Talcahuano", "Coronel", "Lota", "Cañete", "Lebu", "Mulchén"],
+            araucania: ["Temuco", "Angol", "Villarrica", "Pucón", "Padre Las Casas", "Nueva Imperial", "Lautaro", "Gorbea"],
+            los_rios: ["Valdivia", "La Unión", "Río Bueno", "Panguipulli", "Paillaco", "Mariquina"],
+            los_lagos: ["Puerto Montt", "Osorno", "Castro", "Ancud", "Chaitén", "Calbuco"],
+            aysen: ["Coyhaique", "Puerto Aysén", "Chile Chico", "Cisnes"],
+            magallanes: ["Punta Arenas", "Puerto Natales", "Porvenir", "Cabo de Hornos"]
+        };
+
+        function actualizarComunas() {
+            let regionSeleccionada = document.getElementById("region").value;
+            let comunaSelect = document.getElementById("comuna");
+
+            // Limpiar opciones previas
+            comunaSelect.innerHTML = '<option value="">Seleccione una comuna</option>';
+
+            // Si se seleccionó una región, cargar las comunas
+            if (regionSeleccionada in comunasPorRegion) {
+                comunasPorRegion[regionSeleccionada].forEach(comuna => {
+                    let option = document.createElement("option");
+                    option.value = comuna.toLowerCase().replace(/\s/g, "_");
+                    option.textContent = comuna;
+                    comunaSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+
 </body>
 </html>
-
