@@ -34,13 +34,26 @@
             return true;
         }
 
+        function validarFormulario(event) {
+            let camposRequeridos = ["email", "rut", "nombre", "telefono", "cargo", "direccion", "region", "comuna", "vehiculo", "tipo_vehiculo", "licencia", "android", "experiencia", "medio"];
+            for (let id of camposRequeridos) {
+                let campo = document.getElementById(id);
+                if (!campo || campo.value.trim() === "") {
+                    alert("Por favor, complete todos los campos obligatorios.");
+                    campo.focus();
+                    event.preventDefault();
+                    return false;
+                }
+            }
+            return true;
+        }
 </script>
 </head>
 <body>
 
     <h2>Formulario Shopper</h2>
 
-    <form action="https://script.google.com/macros/s/AKfycbz1hauZPXeVMoCa5DNv4uBe8i4TWPGu9FWjtYebSKB7zp5a1A3mMVtb6xYBrddzUtqk/exec" method="post">
+    <form action="https://script.google.com/macros/s/AKfycbz1hauZPXeVMoCa5DNv4uBe8i4TWPGu9FWjtYebSKB7zp5a1A3mMVtb6xYBrddzUtqk/exec" method="post" onsubmit="return validarRut() && validarFormulario(event)">
 
         <label for="rut">RUT Chileno:</label>
         <input type="text" name="rut" id="rut" required onblur="validarRut()"><br><br>
@@ -63,7 +76,7 @@
         <input type="text" name="direccion" id="direccion" required><br><br>
 
         <label for="region">Región:</label>
-        <select name="region" id="region" onchange="actualizarComunas()">
+        <select name="region" id="region" onchange="actualizarComunas()" required>
             <option value="">Seleccione una región</option>
             <option value="arica_parinacota">Arica y Parinacota</option>
             <option value="tarapaca">Tarapacá</option>
@@ -86,7 +99,7 @@
         <br><br>
 
         <label for="comuna">Comuna:</label>
-        <select name="comuna" id="comuna">
+        <select name="comuna" id="comuna" required>
             <option value="">Seleccione una comuna</option>
         </select>
 
