@@ -107,11 +107,42 @@
             <option value="motocicleta">Motocicleta</option>
         </select><br><br>
 
-        <label>¿Cuentas con un teléfono Android? de No ser así ¿Puedes conseguir alguno para desempeñarte?</label>
+        <label>¿Tienes con licencia de conducir vigente en Chile?</label>
+        <select name="licencia" required>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select><br><br>
+
+         <label>¿Cuentas con un teléfono Android? de No ser así ¿Puedes conseguir alguno para desempeñarte?</label>
         <select name="android" required>
             <option value="si">Sí</option>
             <option value="no">No</option>
         </select><br><br>
+
+        <label>¿Tienes algún tipo de experiencia en empresas afines?</label>
+        <select name="experiencia" required>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+        </select><br><br>
+
+        <label for="experiencia2">Si tu respuesta anterior fue "Sí" coméntanos dónde te has desempeñado previamente.
+        Si tu respuesta fue "No" omite esta pregunta. </label>
+        <input type="text" name="experiencia2" id="experiencia2" required><br><br>
+
+         <label>¿Por qué medio nos conociste?</label>
+        <select name="medio" required>
+            <option value="Plataformas_de_empleo">Plataforma de empleo</option>
+            <option value="Facebook">Facebook</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Página_Web">Página Web</option>
+            <option value="Referido">Referido</option>
+            <option value="Supermercado">Supermercado</option>
+            <option value="Radio">Radio</option>
+            <option value="Flayers">Flayers</option>
+            <option value="Pantalla_en_vía_publica">Pantalla en vía publica</option>
+        </select><br><br>
+
 
         <button type="submit">Guardar</button>
     </form>
