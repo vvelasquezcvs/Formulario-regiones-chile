@@ -31,6 +31,8 @@
                 rutInput.value = "";
                 return false;
             }
+            // Formatear RUT sin puntos y con guion
+            rutInput.value = cuerpo + "-" + dv;
             return true;
         }
 
@@ -79,6 +81,7 @@
 
         <label for="cargo">Cargo al que Postula:</label>
         <select name="cargo" id="cargo" required>
+            <option value="">Seleccione un cargo</option>
             <option value="shopper">Shopper</option>
         </select><br><br>
 
@@ -117,12 +120,15 @@
 
         <label>¿Cuentas con un vehículo?</label>
         <select name="vehiculo" required>
+            <option value="">Seleccione una opción</option>
             <option value="si">Sí</option>
             <option value="no">No</option>
         </select><br><br>
 
          <label>¿Qué tipo de vehículo utilizaría?</label>
         <select name="tipo_vehiculo" required>
+            <option value="">Seleccione una opción</option>
+            <option value="sin_vehiculo">Sin vehiculo</option>
             <option value="city_car">City Car</option>
             <option value="sedan">Sedán</option>
             <option value="suv">SUV</option>
@@ -132,18 +138,21 @@
 
         <label>¿Tienes licencia de conducir vigente en Chile?</label>
         <select name="licencia" required>
+            <option value="">Seleccione una opción</option>
             <option value="si">Sí</option>
             <option value="no">No</option>
         </select><br><br>
 
          <label>¿Cuentas con un teléfono Android? de No ser así ¿Puedes conseguir alguno para desempeñarte?</label>
         <select name="android" required>
+            <option value="">Seleccione una opción</option>
             <option value="si">Sí</option>
             <option value="no">No</option>
         </select><br><br>
 
         <label>¿Tienes algún tipo de experiencia en empresas afines?</label>
         <select name="experiencia" required>
+            <option value="">Seleccione una opción</option>
             <option value="si">Sí</option>
             <option value="no">No</option>
         </select><br><br>
@@ -154,6 +163,7 @@
 
          <label>¿Por qué medio nos conociste?</label>
         <select name="medio" required>
+            <option value="">Seleccione una opción</option>
             <option value="Plataformas_de_empleo">Plataforma de empleo</option>
             <option value="Facebook">Facebook</option>
             <option value="TikTok">TikTok</option>
