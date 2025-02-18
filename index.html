@@ -45,8 +45,18 @@
                     return false;
                 }
             }
+            // Validar selección de región y comuna
+            let region = document.getElementById("region");
+            let comuna = document.getElementById("comuna");
+            if (region.value === "" || comuna.value === "") {
+                alert("Debe seleccionar una región y una comuna.");
+                event.preventDefault();
+                return false;
+            }
+            
             return true;
         }
+        
 </script>
 </head>
 <body>
