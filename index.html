@@ -41,7 +41,7 @@
             for (let id of camposRequeridos) {
                 let campo = document.getElementById(id);
                 if (!campo || campo.value.trim() === "") {
-                    alert("Se estan validando lo datos, por favor espere");
+                    alert("Se estan validando lo datos, presione en aceptar para continuar");
                     campo.focus();
                     formularioValido = false;
                     break;
