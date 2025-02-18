@@ -36,17 +36,6 @@
             return true;
         }
 
-        function validarFormulario(event) {
-            let camposRequeridos = ["email", "rut", "nombre", "telefono", "cargo", "direccion", "region", "comuna", "vehiculo", "tipo_vehiculo", "licencia", "android", "experiencia", "medio"];
-            for (let id of camposRequeridos) {
-                let campo = document.getElementById(id);
-                if (!campo || campo.value.trim() === "") {
-                    alert("Por favor, complete todos los campos obligatorios.");
-                    campo.focus();
-                    formularioValido = false;
-                    break;
-                }
-            }
             // Validar selección de región y comuna
             let region = document.getElementById("region").value;
             let comuna = document.getElementById("comuna").value;
